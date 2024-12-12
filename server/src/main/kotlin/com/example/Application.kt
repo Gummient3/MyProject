@@ -10,6 +10,8 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.html.*
 
+import kotlin.random.Random
+
 fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
     embeddedServer(Netty, port = 8080, module = Application::module)
@@ -35,7 +37,7 @@ fun Application.module() {
                     }
                 }
                 body {
-                    h1 { +"ЛЮБЛЮ ИГОРЕЧКА" }
+                    h1 { +"${Random.nextInt(1, 200)}" }
                 }
             }
         }
