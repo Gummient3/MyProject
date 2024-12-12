@@ -34,7 +34,7 @@ fun Application.module() {
                     }
                 }
                 body {
-                    h1 { +"ТЫ ПИДОР" }
+                    h1 { +"ЛЮБЛЮ ИГОРЕЧКА" }
                 }
             }
         }
