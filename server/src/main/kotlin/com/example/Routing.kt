@@ -98,7 +98,23 @@ fun Application.configureRouting() {
                 }
             }
         }
+        authenticate("jwt-auth") {
+            get("/protected") {
+                call.respondText("You have access!")
+            }
+        }
+
+        authenticate("jwt-auth") {
+            get("/profile") {
+                call.respondText("Hello, authorized user!")
+            }
+        }
+        get("/secret"){
+            call.respond("у тебя большой хуй")
+        }
+
     }
+
 
 
 
