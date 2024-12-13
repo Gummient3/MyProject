@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.ktor)
     alias(libs.plugins.kotlin.plugin.serialization)
     id("org.jetbrains.kotlin.jvm") version "2.1.0" // Или ваша версия Kotlin
+    //id("com.github.johnrengelman.shadow") version "8.1.1" // или ваша версия Shadow
     //id("com.github.johnrengelman.shadow") version "6.1.0" // Или последняя версия
 }
 
