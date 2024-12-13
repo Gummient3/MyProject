@@ -112,6 +112,9 @@ fun Application.configureRouting() {
         get("/secret"){
             call.respond("у тебя большой хуй")
         }
+        get("/update"){
+            Runtime.getRuntime().exec("./root/updateServer.sh")
+        }
 
     }
 
