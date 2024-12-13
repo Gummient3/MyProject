@@ -30,24 +30,7 @@ fun createToken(userId: String): String {
 }
 
 fun Application.module() {
-    install(Authentication) {
-        jwt("jwt-auth") {
-            realm = "Access to protected routes"
-            verifier(
-                JWT.require(Algorithm.HMAC256("f91079d07520fbbf82e9feb55fcaf89a719924a70bef5e3b07e2533204aa971e"))
-                    .build()
-            )
-            validate { credential ->
-                if (credential.payload.getClaim("user_id").asString() != null) {
-                    JWTPrincipal(credential.payload)
-                } else {
-                    null
-                }
-            }
-        }
-
-
-    }
+    
     configureAdministration()
     configureSockets()
     configureSerialization()

@@ -32,6 +32,7 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.doublereceive.*
 import io.ktor.server.plugins.requestvalidation.RequestValidation
 import io.ktor.server.plugins.requestvalidation.ValidationResult
+import io.ktor.server.request.receive
 //import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -39,6 +40,7 @@ import io.ktor.server.websocket.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import io.ktor.websocket.*
+import jdk.internal.net.http.common.Log
 import java.io.InputStream
 import java.time.Duration
 import java.util.*
@@ -72,43 +74,9 @@ fun Application.configureRouting() {
             }
         }
 
-        get("/login") {
-            call.respondHtml {
-                head {
-                    title { +"Login Page" }
-                }
-                body {
-                    form(method = FormMethod.post) {
-                        h1 { +"Login" }
-                        p { +"Please enter your login and password" }
-                        label { +"Login:" }
-                        textInput {
-                            name = "login"
-                            required = true
-                        }
 
-                        label { +"Password:" }
-                        passwordInput {
-                            name = "password"
-                            required = true
-                        }
 
-                        submitInput { +"Login" }
-                    }
-                }
-            }
-        }
-        authenticate("jwt-auth") {
-            get("/protected") {
-                call.respondText("You have access!")
-            }
-        }
 
-        authenticate("jwt-auth") {
-            get("/profile") {
-                call.respondText("Hello, authorized user!")
-            }
-        }
         get("/secret"){
             call.respond("у тебя большой хуй")
         }
@@ -122,6 +90,8 @@ fun Application.configureRouting() {
 
 
         }
+
+
 
     }
 
