@@ -1,6 +1,17 @@
 package com.example
 
 import com.auth0.jwt.JWT
+
+import io.ktor.http.*
+import io.ktor.server.application.*
+import io.ktor.server.application.*
+import io.ktor.server.engine.*
+import io.ktor.server.html.*
+import io.ktor.server.netty.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+import kotlinx.html.*
+
 import com.auth0.jwt.algorithms.Algorithm
 import com.fasterxml.jackson.databind.*
 import io.ktor.http.*
@@ -15,12 +26,13 @@ import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 import io.ktor.server.auth.ldap.*
 import io.ktor.server.engine.*
+import io.ktor.server.html.respondHtml
 import io.ktor.server.plugins.autohead.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.doublereceive.*
 import io.ktor.server.plugins.requestvalidation.RequestValidation
 import io.ktor.server.plugins.requestvalidation.ValidationResult
-import io.ktor.server.request.*
+//import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.websocket.*
@@ -34,26 +46,60 @@ import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.html.body
+import kotlinx.html.h1
+import kotlinx.html.style
+import kotlinx.html.title
 import org.jetbrains.exposed.sql.*
+import kotlin.random.Random
+
 
 fun Application.configureRouting() {
-    install(RequestValidation) {
-        validate<String> { bodyText ->
-            if (!bodyText.startsWith("Hello"))
-                ValidationResult.Invalid("Body text should start with 'Hello'")
-            else ValidationResult.Valid
-        }
-    }
-    install(DoubleReceive)
-    install(AutoHeadResponse)
     routing {
         get("/") {
-            call.respondText("Hello World!")
+            call.respondHtml(HttpStatusCode.OK) {
+                head {
+                    title { +"ПРИВЕТ ГНОМ" }
+                    style {
+                        +"body { margin: 0; font-family: sans-serif; display: flex; justify-content: center; "
+                        +   "align-items: center; min-height: 100vh; }"
+                        +"h1 { font-size: 10vw; text-align: center; }" // 10vw - 10% ширины viewport
+                    }
+                }
+                body {
+                    h1 { +"${Random.nextInt(1, 201)}" }
+                }
+            }
         }
-        post("/double-receive") {
-            val first = call.receiveText()
-            val theSame = call.receiveText()
-            call.respondText(first + " " + theSame)
+
+        get("/login") {
+            call.respondHtml {
+                head {
+                    title { +"Login Page" }
+                }
+                body {
+                    form(method = FormMethod.post) {
+                        h1 { +"Login" }
+                        p { +"Please enter your login and password" }
+                        label { +"Login:" }
+                        textInput {
+                            name = "login"
+                            required = true
+                        }
+
+                        label { +"Password:" }
+                        passwordInput {
+                            name = "password"
+                            required = true
+                        }
+
+                        submitInput { +"Login" }
+                    }
+                }
+            }
         }
     }
+
+
+
 }

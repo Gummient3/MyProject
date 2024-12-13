@@ -25,22 +25,7 @@ fun Application.module() {
     configureSerialization()
     configureDatabases()
     configureSecurity()
-    routing {
-        get("/") {
-            call.respondHtml(HttpStatusCode.OK) {
-                head {
-                    title { +"ПРИВЕТ ГНОМ" }
-                    style {
-                        +"body { margin: 0; font-family: sans-serif; display: flex; justify-content: center; "
-                             +   "align-items: center; min-height: 100vh; }"
-                        +"h1 { font-size: 10vw; text-align: center; }" // 10vw - 10% ширины viewport
-                    }
-                }
-                body {
-                    h1 { +"${Random.nextInt(1, 201)}" }
-                }
-            }
-        }
-    }
+    configureRouting()
+
     }
 
