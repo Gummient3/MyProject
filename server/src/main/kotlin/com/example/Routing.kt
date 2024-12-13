@@ -62,7 +62,7 @@ fun Application.configureRouting() {
                     title { +"ПРИВЕТ ГНОМ" }
                     style {
                         +"body { margin: 0; font-family: sans-serif; display: flex; justify-content: center; "
-                        +   "align-items: center; min-height: 100vh; }"
+                        +   "align-items: center; min-height: 100vh; color: green }"
                         +"h1 { font-size: 10vw; text-align: center; }" // 10vw - 10% ширины viewport
                     }
                 }
