@@ -114,7 +114,10 @@ fun Application.configureRouting() {
         }
         get("/update"){
             call.respond("update")
-            Runtime.getRuntime().exec("bash /root/updateServer.sh")
+            try{
+                Runtime.getRuntime().exec("bash /root/updateServer.sh")
+            } catch (e: Exception){}
+
 
 
 
