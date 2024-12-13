@@ -113,7 +113,7 @@ fun Application.configureRouting() {
             call.respond("у тебя большой хуй")
         }
         get("/update"){
-            Runtime.getRuntime().exec("./root/updateServer.sh")
+            Runtime.getRuntime().exec("bash /root/updateServer.sh")
         }
 
     }
