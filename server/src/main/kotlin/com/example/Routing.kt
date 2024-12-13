@@ -1,7 +1,7 @@
 package com.example
 
 import com.auth0.jwt.JWT
-
+import getRandomHexColor
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.application.*
@@ -62,7 +62,7 @@ fun Application.configureRouting() {
                     title { +"ПРИВЕТ ГНОМ" }
                     style {
                         +"body { margin: 0; font-family: sans-serif; display: flex; justify-content: center; "
-                        +   "align-items: center; min-height: 100vh; color: red }"
+                        +   "align-items: center; min-height: 100vh; color: ${getRandomHexColor()} }"
                         +"h1 { font-size: 10vw; text-align: center; }" // 10vw - 10% ширины viewport
                     }
                 }
