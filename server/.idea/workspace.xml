@@ -91,7 +91,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager" selected="Kotlin.ApplicationKt">
+  <component name="RunManager" selected="Gradle.server [shadowJar]">
     <configuration name="server [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -134,8 +134,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.ApplicationKt" />
         <item itemvalue="Gradle.server [shadowJar]" />
+        <item itemvalue="Kotlin.ApplicationKt" />
       </list>
     </recent_temporary>
   </component>
