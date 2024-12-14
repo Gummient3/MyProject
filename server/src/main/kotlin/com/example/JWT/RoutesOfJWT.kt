@@ -30,12 +30,12 @@ fun Route.auth(){
 
         val creds: UserCreds = call.receive<UserCreds>()
         if (creds.password == "Admin123" && creds.username == "Admin"){
-            call.respondText(status = HttpStatusCode.OK){
+            call.respond(status = HttpStatusCode.OK){
                 "token-blA-B;A-F=-BLA-BLA-"
             }
         }
         else{
-            call.respondText(status = HttpStatusCode.Unauthorized) {
+            call.respond(status = HttpStatusCode.Unauthorized) {
                 """"POSHEL NAHUI"
                 ${creds.password}
                 ${creds.username} 
