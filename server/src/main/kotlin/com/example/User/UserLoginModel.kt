@@ -6,6 +6,10 @@ import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
+data class UserLog(val username: String,val password: String){
+
+}
+
 object UserLoginModel : IntIdTable() {
     val username = varchar("username", 50).uniqueIndex() // Уникальный столбец для username
     val passwordHash = varchar("password_hash", 255) // Хэш пароля

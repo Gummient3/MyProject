@@ -13,6 +13,7 @@ import io.ktor.server.routing.*
 import kotlinx.html.*
 
 import com.auth0.jwt.algorithms.Algorithm
+import com.example.JWT.auth
 import com.example.TestRoutes.Test
 import com.example.TestRoutes.Test.baseRoutes
 import com.fasterxml.jackson.databind.*
@@ -64,18 +65,9 @@ data class Data(val username: String, val password: String)
 fun Application.configureRouting() {
     routing {
         baseRoutes()
-        post("/login") {
-            val user = call.receive<User>()
-            // Check username and password
-            // ...
-            val token = JWT.create()
-                //.withAudience(audience)
-                //.withIssuer(issuer)
-                //.withClaim("username", user.username)
-                .withExpiresAt(Date(System.currentTimeMillis() + 60000))
-                .sign(Algorithm.HMAC256(secret))
-            call.respond(hashMapOf("token" to token))
-        }
+        auth()
+
+
         post("/show"){
             val msg: Data = call.receive<Data>()
             if(msg.username == "rikudo" && msg.password == "qwerty123"){

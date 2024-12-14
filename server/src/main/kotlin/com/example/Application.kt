@@ -32,16 +32,7 @@ fun main(args: Array<String>) {
 
 
 fun Application.module() {
-    install(Authentication) {
-        jwt("auth-jwt") {
-            //realm = myRealm
-            verifier(JWT
-                .require(Algorithm.HMAC256(secret))
-//                .withAudience(audience)
-//                .withIssuer(issuer)
-                .build())
-        }
-    }
+
 
 
     configureAdministration()
