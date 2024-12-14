@@ -13,6 +13,8 @@ import io.ktor.server.routing.*
 import kotlinx.html.*
 
 import com.auth0.jwt.algorithms.Algorithm
+import com.example.TestRoutes.Test
+import com.example.TestRoutes.Test.baseRoutes
 import com.fasterxml.jackson.databind.*
 import io.ktor.http.*
 import io.ktor.network.selector.*
@@ -52,44 +54,67 @@ import kotlinx.html.body
 import kotlinx.html.h1
 import kotlinx.html.style
 import kotlinx.html.title
+import kotlinx.serialization.Serializable
+import org.h2.engine.User
 import org.jetbrains.exposed.sql.*
 import kotlin.random.Random
-
+@Serializable
+data class Data(val username: String, val password: String)
 
 fun Application.configureRouting() {
     routing {
-        get("/") {
-            call.respondHtml(HttpStatusCode.OK) {
-                head {
-                    title { +"ПРИВЕТ ГНОМ" }
-                    style {
-                        +"body { margin: 0; font-family: sans-serif; display: flex; justify-content: center; "
-                        +   "align-items: center; min-height: 100vh; color: ${getRandomHexColor()} }"
-                        +"h1 { font-size: 10vw; text-align: center; }" // 10vw - 10% ширины viewport
-                    }
-                }
-                body {
-                    h1 { +"${Random.nextInt(1, 201)}" }
+        baseRoutes()
+        post("/login") {
+            val user = call.receive<User>()
+            // Check username and password
+            // ...
+            val token = JWT.create()
+                //.withAudience(audience)
+                //.withIssuer(issuer)
+                //.withClaim("username", user.username)
+                .withExpiresAt(Date(System.currentTimeMillis() + 60000))
+                .sign(Algorithm.HMAC256(secret))
+            call.respond(hashMapOf("token" to token))
+        }
+        post("/show"){
+            val msg: Data = call.receive<Data>()
+            if(msg.username == "rikudo" && msg.password == "qwerty123"){
+                call.respondHtml {
+
+                        head {
+                            title { +"Authorized" }
+                        }
+                        body {
+                            style {
+                                +"body { font-family: sans-serif; }"
+                                +"h1 { color: green; font-size: 5em; text-align: center; }"
+                            }
+                            h1 { +"ВЫ АВТОРИЗОВАНЫ" }
+                        }
+
                 }
             }
+            else {
+                call.respondHtml() {
+
+                        head {
+                            title { +"Unauthorized" }
+                        }
+                        body {
+                            style {
+                                +"body { font-family: sans-serif; }"
+                                +"h1 { color: red; font-size: 5em; text-align: center; }"
+                            }
+                            h1 { +"НЕПРАВИЛЬНЫЙ ЛОГИН И/ИЛИ ПАРОЛЬ" }
+                        }
+
+                }
+            }
+
+
+
         }
 
-
-
-
-        get("/secret"){
-            call.respond("у тебя большой хуй")
-        }
-        get("/update"){
-            call.respond("update")
-            try{
-                Runtime.getRuntime().exec("bash /root/updateServer.sh")
-            } catch (e: Exception){}
-
-
-
-
-        }
 
 
 

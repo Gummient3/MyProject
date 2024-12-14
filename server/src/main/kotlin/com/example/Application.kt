@@ -16,21 +16,30 @@ import io.ktor.server.routing.*
 import kotlinx.html.*
 
 import kotlin.random.Random
+data class UserDate(var password: String,var username: String ){
 
+}
+val secret: String = "1c6782b019f42755f88958970fc82c8558ab1fc2ff67170fa7f45611e6865c8e"
 fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
     embeddedServer(Netty, port = 8080, module = Application::module)
         .start(wait = true)
 }
-fun createToken(userId: String): String {
-    val algorithm = Algorithm.HMAC256("your_secret_key") // ключ для подписи
-    return JWT.create()
-        .withClaim("user_id", userId)  // добавляем данные пользователя
-        .sign(algorithm)
-}
+
 
 fun Application.module() {
-    
+    install(Authentication) {
+        jwt("auth-jwt") {
+            //realm = myRealm
+            verifier(JWT
+                .require(Algorithm.HMAC256(secret))
+//                .withAudience(audience)
+//                .withIssuer(issuer)
+                .build())
+        }
+    }
+
+
     configureAdministration()
     configureSockets()
     configureSerialization()
