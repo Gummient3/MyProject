@@ -87,7 +87,7 @@ fun Application.configureRouting() {
                         body {
                             style {
                                 +"body { font-family: sans-serif; }"
-                                +"h1 { color: green; font-size: 5em; text-align: center; }"
+                                +"h1 { color: ${getRandomHexColor()}; font-size: 5em; text-align: center; }"
                             }
                             h1 { +"ВЫ АВТОРИЗОВАНЫ" }
                         }
@@ -103,7 +103,7 @@ fun Application.configureRouting() {
                         body {
                             style {
                                 +"body { font-family: sans-serif; }"
-                                +"h1 { color: red; font-size: 5em; text-align: center; }"
+                                +"h1 { color: ${getRandomHexColor()}; font-size: 5em; text-align: center; }"
                             }
                             h1 { +"НЕПРАВИЛЬНЫЙ ЛОГИН И/ИЛИ ПАРОЛЬ" }
                         }
