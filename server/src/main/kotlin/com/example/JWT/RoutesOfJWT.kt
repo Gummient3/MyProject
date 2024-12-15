@@ -14,15 +14,23 @@ import io.ktor.server.routing.post
 fun Route.auth() {
     post("/registration") {
         val creds: UserCreds = call.receive<UserCreds>()
-        if (getUserByUsername(creds.username) == null) {
-            call.respond(status = HttpStatusCode.NoContent) {
+        println(creds.username)
+        println(creds.password)
+//        println(getUserByUsername(creds.username))
+        try {
+            if (getUserByUsername(creds.username) == null) {
+                call.respond(status = HttpStatusCode.NoContent) {
 
+                }
+            } else {
+                call.respond(status = HttpStatusCode.OK) {
+                }
             }
-        } else {
-            call.respond(status = HttpStatusCode.OK) {
+        }catch (e: Exception){
+            call.respondText(status = HttpStatusCode.NotFound){
+                "No user with that name"
             }
         }
-
 
 //        val creds: UserCreds = call.receive<UserCreds>()
 //        if (creds.password == "Admin123" && creds.username == "Admin"){
