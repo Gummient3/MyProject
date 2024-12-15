@@ -1,6 +1,5 @@
 package com.example.User
 
-import com.example.UserService.Users
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.id.EntityID
