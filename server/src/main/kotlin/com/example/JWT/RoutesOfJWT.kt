@@ -1,16 +1,23 @@
 package com.example.JWT
 
-import com.example.User.UserCreds
+//import com.example.User.UserCreds
 import com.example.User.UserLog
 import com.example.User.getUserByUsername
+//import com.example.User.getUserByUsername
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class UserCreds(val username: String, val password: String){
 
 
+
+}
 fun Route.auth() {
     post("/registration") {
         val creds: UserCreds = call.receive<UserCreds>()
@@ -18,7 +25,7 @@ fun Route.auth() {
         println(creds.password)
 //        println(getUserByUsername(creds.username))
         try {
-            if (getUserByUsername(creds.username) == null) {
+            if (creds.username == "Suren" && creds.password == "krasav4ik") {
                 call.respond(status = HttpStatusCode.NoContent) {
 
                 }
