@@ -26,15 +26,15 @@ fun Route.auth() {
 //        println(getUserByUsername(creds.username))
         try {
             if (creds.username == "Suren" && creds.password == "krasav4ik") {
-                call.respond(status = HttpStatusCode.NoContent) {
+                call.respond(status = HttpStatusCode.OK) {
 
                 }
             } else {
-                call.respond(status = HttpStatusCode.OK) {
+                call.respond(status = HttpStatusCode.Unauthorized) {
                 }
             }
         }catch (e: Exception){
-            call.respondText(status = HttpStatusCode.NotFound){
+            call.respondText(status = HttpStatusCode.InternalServerError){
                 "No user with that name"
             }
         }
