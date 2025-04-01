@@ -9,12 +9,15 @@ import com.example.JWT.auth
 import com.example.TestRoutes.Test.baseRoutes
 import io.ktor.server.html.respondHtml
 import io.ktor.server.request.receive
+import io.ktor.server.response.respondFile
+import io.ktor.server.response.respondText
 //import io.ktor.server.request.*
 import kotlinx.html.body
 import kotlinx.html.h1
 import kotlinx.html.style
 import kotlinx.html.title
 import kotlinx.serialization.Serializable
+import java.io.File
 
 @Serializable
 data class Data(val username: String, val password: String)
@@ -23,6 +26,12 @@ fun Application.configureRouting() {
     routing {
         baseRoutes()
         auth()
+
+
+        get("/marina") {
+            call.respondFile(File("src/main/resources/static/index.html"))
+        }
+
 
 
         post("/show"){

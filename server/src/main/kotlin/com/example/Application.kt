@@ -1,8 +1,6 @@
 package com.example
 
 //import com.example.User.DatabaseConfig
-import com.example.DatabaseConf.checkConnectDB
-import com.example.DatabaseConf.connectToDatabase
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -24,9 +22,9 @@ fun main(args: Array<String>) {
 fun Application.module() {
 
 
-    connectToDatabase()
-    checkConnectDB()
-    configureAdministration()
+
+    //createDB()
+    //configureAdministration()
     configureSockets()
     configureSerialization()
     //configureDatabases()

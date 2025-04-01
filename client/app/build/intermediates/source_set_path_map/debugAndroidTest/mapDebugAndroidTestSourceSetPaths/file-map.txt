@@ -1,0 +1,6 @@
+com.example.client.test.app-core-1.6.1-0 C:\Users\user\.gradle\caches\8.9\transforms\c2ec04a1d7705475710fdf38faa955e8\transformed\core-1.6.1\res
+com.example.client.test.app-tracing-1.2.0-1 C:\Users\user\.gradle\caches\8.9\transforms\ecc7e7bfdc494f50c7c3169c8097c47d\transformed\tracing-1.2.0\res
+com.example.client.test.app-androidTest-2 C:\Users\user\AndroidStudioProjects\client\app\build\generated\res\resValues\androidTest\debug
+com.example.client.test.app-mergeDebugAndroidTestResources-3 C:\Users\user\AndroidStudioProjects\client\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.client.test.app-mergeDebugAndroidTestResources-4 C:\Users\user\AndroidStudioProjects\client\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.client.test.app-debugAndroidTest-5 C:\Users\user\AndroidStudioProjects\client\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
